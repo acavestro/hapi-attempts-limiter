@@ -1,0 +1,26 @@
+{
+  "name": "hapi-attempts-limiter",
+  "version": "0.2.1",
+  "description": "An hapi.js plugin that limits the number of attempts per route in a defined period of time (every time an endpoint does not return 200 as status code).",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acavestro/hapi-attempts-limiter.git"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "hapi",
+    "hapijs",
+    "limiter",
+    "attempts",
+    "ratelimiter",
+    "bruteforce"
+  ],
+  "author": "Antonio Cavestro",
+  "license": "MIT",
+  "dependencies": {
+    "hoek": "^4.0.2"
+  }
+}
