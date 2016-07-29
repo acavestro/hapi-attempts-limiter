@@ -22,5 +22,12 @@
   "license": "MIT",
   "dependencies": {
     "hoek": "^4.0.2"
+  },
+  "devDependencies": {
+    "async": "^2.0.1",
+    "code": "^3.0.2",
+    "fakeredis": "^1.0.3",
+    "hapi": "^13.5.2",
+    "lab": "^10.9.0"
   }
 }
