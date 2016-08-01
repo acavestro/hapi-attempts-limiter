@@ -20,7 +20,6 @@
   ],
   "author": "Antonio Cavestro",
   "license": "MIT",
-  "readme": "README.md",
   "dependencies": {
     "hoek": "^4.0.2"
   },
