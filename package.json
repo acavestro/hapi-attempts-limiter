@@ -1,6 +1,6 @@
 {
   "name": "hapi-attempts-limiter",
-  "version": "0.2.1",
+  "version": "1.0.0",
   "description": "An hapi.js plugin that limits the number of failed attempts for every route.",
   "repository": {
     "type": "git",
