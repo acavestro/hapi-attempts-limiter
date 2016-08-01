@@ -1,7 +1,7 @@
 {
   "name": "hapi-attempts-limiter",
   "version": "0.2.1",
-  "description": "An hapi.js plugin that limits the number of attempts per route in a defined period of time (every time an endpoint does not return 200 as status code).",
+  "description": "An hapi.js plugin that limits the number of failed attempts for every route.",
   "repository": {
     "type": "git",
     "url": "https://github.com/acavestro/hapi-attempts-limiter.git"
