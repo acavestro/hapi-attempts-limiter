@@ -61,7 +61,7 @@ describe('hapi-attempts-limiter', () => {
                 fail(err);
             }
 
-            expect(results).to.be.equal([ 403, 403, 403, 403, 403 ]);
+            expect(results).to.be.equal([403, 403, 403, 403, 403]);
 
             return done();
         });
@@ -75,7 +75,7 @@ describe('hapi-attempts-limiter', () => {
                 fail(err);
             }
 
-            expect(results).to.be.equal([ 403, 403, 403, 403, 403, 429 ]);
+            expect(results).to.be.equal([403, 403, 403, 403, 403, 429]);
             return done();
         });
     });
@@ -88,7 +88,7 @@ describe('hapi-attempts-limiter', () => {
                 fail(err);
             }
 
-            expect(results).to.be.equal([ 403, 403, 403, 403, 403, 429 ]);
+            expect(results).to.be.equal([403, 403, 403, 403, 403, 429]);
 
             setTimeout(() => {
 
@@ -113,7 +113,7 @@ describe('hapi-attempts-limiter', () => {
                 fail(err);
             }
 
-            expect(results).to.be.equal([ 403, 403, 403, 403 ]);
+            expect(results).to.be.equal([403, 403, 403, 403]);
 
             testOk(0, (err, statusCode) => {
 
@@ -123,13 +123,13 @@ describe('hapi-attempts-limiter', () => {
 
                 expect(statusCode).to.be.equal(200);
 
-                Async.timesSeries(2, testErr, (err, results) => {
+                Async.timesSeries(2, testErr, (err, secondResults) => {
 
                     if (err) {
                         fail(err);
                     }
 
-                    expect(results).to.be.equal([ 403, 429 ]);
+                    expect(secondResults).to.be.equal([403, 429]);
                     return done();
                 });
             });
