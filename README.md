@@ -1,5 +1,8 @@
 # hapi-attempts-limiter
-An hapi.js plugin that limits the number of failed attempts, based on IP and called route, 
+
+![TravisCI build status](https://travis-ci.org/acavestro/hapi-attempts-limiter.svg?branch=master)
+
+An hapi.js plugin that limits the number of failed attempts, based on IP and called route,
 using Redis to store attempts count. Useful for preventing brute force attacks.
 
 ## Installation
