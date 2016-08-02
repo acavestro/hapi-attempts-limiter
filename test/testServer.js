@@ -1,34 +1,40 @@
 'use strict';
 
 const Hapi = require('hapi');
-const FakeRedis = require('fakeredis');
 
-const server = new Hapi.Server();
-server.connection();
+const createServer = function (redisInstance) {
 
-server.route([
-    {
-        method: 'POST',
-        path: '/test',
-        handler: function (request, reply) {
+    const server = new Hapi.Server();
+    server.connection();
 
-            if (request.payload && request.payload.good) {
-                return reply().code(200);
+    server.route([
+        {
+            method: 'POST',
+            path: '/test',
+            handler: function (request, reply) {
+
+                if (request.payload && request.payload.good) {
+                    return reply().code(200);
+                }
+
+                return reply().code(403);
             }
-
-            return reply().code(403);
         }
-    }
-]);
+    ]);
 
-server.register({
-    register: require('../index'),
-    options: {
-        redisClient: FakeRedis.createClient(),
-        global: {
-            duration: 1
+    server.register({
+        register: require('../index'),
+        options: {
+            redisClient: redisInstance,
+            global: {
+                duration: 1
+            }
         }
-    }
-});
+    });
 
-module.exports = server;
+    return server;
+};
+
+
+
+module.exports = createServer;

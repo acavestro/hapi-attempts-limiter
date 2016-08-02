@@ -1,6 +1,6 @@
 'use strict';
 
-const Server = require('./testServer');
+const FakeRedis = require('fakeredis');
 const Code = require('code');
 const Lab = require('lab');
 const Async = require('async');
@@ -17,6 +17,9 @@ const serverOptions = {
     method: 'POST',
     url: '/test'
 };
+
+const redisInstance = FakeRedis.createClient({ fast: true });
+const Server = require('./testServer')(redisInstance);
 
 const testOk = function (index, callback) {
 
@@ -46,9 +49,8 @@ describe('hapi-attempts-limiter', () => {
 
     afterEach((done) => {
 
-        setTimeout(() => {
-            return done();
-        }, 1500);
+        redisInstance.flushdb();
+        return done();
     });
 
     it('should permit 5 error calls in one second', (done) => {
