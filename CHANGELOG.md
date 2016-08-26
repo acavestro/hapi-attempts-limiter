@@ -7,6 +7,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - Resolved timeout problems with test code
 
+### Fixed
+- Status codes of type 2xx but different from 200 were treated as an error
+
 ## 1.1.2 - 2016-08-02
 
 ### Changed
