@@ -19,6 +19,21 @@ const createServer = function (redisInstance) {
 
                 return reply().code(403);
             }
+        },
+        {
+            method: 'POST',
+            path: '/ratelimited',
+            handler: function (request, reply) {
+
+                return reply().code(200);
+            },
+            config: {
+                plugins: {
+                    'hapi-attempts-limiter': {
+                        genericRateLimiter: true
+                    }
+                }
+            }
         }
     ]);
 
