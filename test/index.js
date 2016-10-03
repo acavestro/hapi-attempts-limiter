@@ -45,6 +45,18 @@ const testErr = function (index, callback) {
     });
 };
 
+const testRateLimiter = function (index, callback) {
+
+    const options = {
+        method: 'POST',
+        url: '/ratelimited'
+    };
+    Server.inject(options, (response) => {
+
+        return callback(null, response.statusCode);
+    });
+};
+
 describe('hapi-attempts-limiter', () => {
 
     afterEach((done) => {
@@ -133,6 +145,19 @@ describe('hapi-attempts-limiter', () => {
                     return done();
                 });
             });
+        });
+    });
+
+    it('should act as a generic rate limiter if the flag is set', (done) => {
+
+        Async.timesSeries(6, testRateLimiter, (err, results) => {
+
+            if (err) {
+                fail(err);
+            }
+
+            expect(results).to.be.equal([200, 200, 200, 200, 200, 429]);
+            return done();
         });
     });
 });
