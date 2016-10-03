@@ -101,7 +101,7 @@ describe('hapi-attempts-limiter', () => {
                     expect(statusCode).to.be.equal(403);
                     return done();
                 });
-            }, 1000);
+            }, 1050);
         });
     });
 
