@@ -19,6 +19,7 @@ You need to register the plugin in you hapi server instance, providing some conf
 * **namespace**: a prefix for the items saved to Redis by the plugin (optional)
 * **global.limit**: the number of maximum failed attempts in the current time window (default: 5)
 * **global.duration**: the length of the time window in **seconds** (default: 60 seconds)
+* **global.genericRateLimiter**: a flag to transform the plugin in a generic rate limiter (default: false)
 
 ```javascript
 server.register({
@@ -64,9 +65,23 @@ to your route configuration object:
   config: {
     description: 'User login route',
     plugins: {
-      "hapi-attempts-limiter": {
+      'hapi-attempts-limiter': {
           limit: 3, // a custom limit
           duration: 120 // a custom duration, in seconds
+      }
+    }
+  }
+}
+//
+{
+  method: 'POST',
+  path: '/heavy',
+  handler: heavyRouteHandler,
+  config: {
+    description: 'Route to be called in moderation',
+    plugins: {
+      'hapi-attempts-limiter': {
+          genericRateLimiter: true
       }
     }
   }
