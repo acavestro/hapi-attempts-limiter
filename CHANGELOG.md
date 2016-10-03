@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.2 - 2016-10-03
+
+### Added
+
+- The plugin can be also used as a generic rate limiter
+
 ## 1.1.3 - 2016-08-26 [YANKED]
 
 ### Changed
