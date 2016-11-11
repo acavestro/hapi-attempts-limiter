@@ -108,7 +108,7 @@ server.register({
        * limit.duration: the length of the time window
        * limit.reset: the remaining time to the time window expiration
        *
-       * You can return anything that can be passed to a reply() function.
+       * You can return a Boom instance, an Error instance or a string that will be converted to a Boom 429 error.
       */
       return Boom.tooManyRequests('Rate limit exceeded, retry in ' + limit.reset + ' seconds');
     }
