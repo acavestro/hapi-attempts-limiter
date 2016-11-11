@@ -17,6 +17,7 @@ You need to register the plugin in you hapi server instance, providing some conf
 
 * **redisClient**: an instance of Redis
 * **namespace**: a prefix for the items saved to Redis by the plugin (optional)
+* **errorMessage**: a function that can be used to generate a custom error message (optional). Read the dedicated chapter for details.
 * **global.limit**: the number of maximum failed attempts in the current time window (default: 5)
 * **global.duration**: the length of the time window in **seconds** (default: 60 seconds)
 * **global.genericRateLimiter**: a flag to transform the plugin in a generic rate limiter (default: false)
@@ -88,4 +89,35 @@ to your route configuration object:
   }
 }
 ```
+
+### Custom error message
+
+You can specify a custom error message by defining the function `errorMessage` in the plugin settings.
+
+```javascript
+server.register({
+  register: require('hapi-attempts-limiter'),
+  options: {
+    namespace: 'FOO',
+    redisClient: yourRedisInstance,
+    errorMessage: function (limit) {
+      /*
+       * Limit is an object that contains the following properties:
+       * limit.remaining: the number of remaining attempts (0, in case of error)
+       * limit.total: the number of available attempts
+       * limit.duration: the length of the time window
+       * limit.reset: the remaining time to the time window expiration
+       *
+       * You can return anything that can be passed to a reply() function.
+      */
+      return Boom.tooManyRequests('Rate limit exceeded, retry in ' + limit.reset + ' seconds');
+    }
+    global: {
+      limit: 5,
+      duration: 60
+    }
+  }
+});
+```
+
 Happy coding!
