@@ -21,6 +21,7 @@
   "author": "Antonio Cavestro",
   "license": "MIT",
   "dependencies": {
+    "boom": "^4.2.0",
     "hoek": "^4.0.2"
   },
   "devDependencies": {
