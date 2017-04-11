@@ -20,6 +20,7 @@ You need to register the plugin in you hapi server instance, providing some conf
 * **global.limit**: the number of maximum failed attempts in the current time window (default: 5)
 * **global.duration**: the length of the time window in **seconds** (default: 60 seconds)
 * **global.genericRateLimiter**: a flag to transform the plugin in a generic rate limiter (default: false)
+* **global.trustProxy**: a flag to use the *latest* IP address of x-forwarded-for header (AWS ELB format), if present (default: false)
 
 ```javascript
 server.register({
