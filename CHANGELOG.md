@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.4.1 - 2018-02-28
+
+### Changed
+- Check if X-Forwarded-For header contains at least one IP address
+- Trim final IP address from X-Forwarded-For header
+
 ## 1.4 - 2017-04-12
 
 ### Changed
